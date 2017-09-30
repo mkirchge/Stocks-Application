@@ -76,7 +76,8 @@ public class GUI {
         combobox = new JComboBox(nasdaq_stocks);
         combobox.addActionListener ((ActionEvent e) -> {
             String company = (String) combobox.getEditor().getItem();
-            String temp = company.substring(0,4).replace(' ','');
+            String temp = company.substring(0,4).replace(" ","");
+            System.out.println(temp);
             loadStock(temp);
         });
 
@@ -136,10 +137,10 @@ public class GUI {
     /****************************************
         Gets stock requested in search bar
      ****************************************/
-    public static HashMap<String,ArrayList<String>> loadStock(String stock) {
+    public static HashMap<String,ArrayList<String>> loadStock(String ticker_symbol) {
 
         // Create a JSON object
-        String url = "https://www.quandl.com/api/v3/datasets/WIKI/FB.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
+        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
         ArrayList<String> list = new ArrayList<String>();
         HashMap<String,ArrayList<String>> row = new HashMap<String,ArrayList<String>>();
         JSONArray array = new JSONArray();
@@ -152,7 +153,7 @@ public class GUI {
             JSONObject j2 = json.getJSONObject("dataset");
             array = j2.getJSONArray("data");
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0; i < 5; i++) {
                 System.out.println(array.get(i));
             }
         } catch (JSONException | IOException e) {
