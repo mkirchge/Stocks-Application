@@ -71,13 +71,16 @@ public class GUI {
         // size of nasdaw file is 3218
         String[] nasdaq_stocks = new String[3218];
         int count = 0;
-        for (int i = 0; i < 3218; i++){ nasdaq_stocks[count++] = mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName(); }
+        for (int i = 0; i < 3218; i++){
+            nasdaq_stocks[count++] = mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", "");
+        }
 
         combobox = new JComboBox(nasdaq_stocks);
         combobox.addActionListener ((ActionEvent e) -> {
             String company = (String) combobox.getEditor().getItem();
-            String temp = company.substring(0,4).replace(" ","");
+            String temp = company.substring(0,5).replace(" ","").replace("\t","");
             System.out.println(temp);
+            System.out.println(company);
             loadStock(temp);
         });
 
@@ -137,12 +140,12 @@ public class GUI {
     /****************************************
         Gets stock requested in search bar
      ****************************************/
-    public static HashMap<String,ArrayList<String>> loadStock(String ticker_symbol) {
+    public static Stock loadStock(String ticker_symbol) {
 
         // Create a JSON object
         String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
         ArrayList<String> list = new ArrayList<String>();
-        HashMap<String,ArrayList<String>> row = new HashMap<String,ArrayList<String>>();
+        Stock stock = new Stock();
         JSONArray array = new JSONArray();
 
         //Load data from Stocks API
@@ -162,7 +165,7 @@ public class GUI {
 
         // KEY: stock symbol
         // VALUE: company name, price, percent change, 52-week high, 52-week low
-        return row;
+        return stock;
     }
 
     private static String readAll(Reader rd) throws IOException {
