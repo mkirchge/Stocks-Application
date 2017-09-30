@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="mystocks:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mystocks_jar</output-path>
+    <root id="archive" name="mystocks.jar">
+      <element id="module-output" name="mystocks" />
+      <element id="extracted-dir" path="D:/java_jar_files/json-jena-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/java_jar_files/swingx.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/java_jar_files/java-json.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/java_jar_files/gson-2.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/java_jar_files/swing-layout-1.0.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/java_jar_files/gson-2.2.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
