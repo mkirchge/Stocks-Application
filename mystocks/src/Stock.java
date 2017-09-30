@@ -5,11 +5,11 @@
 public class Stock {
 
     private String name;
-    private float change;
-    private float yearlow;
-    private float yearhigh;
+    private double change;
+    private double yearlow;
+    private double yearhigh;
     private String symbol;
-    private int price;
+    private String price;
 
     public Stock(){
         name = "";
@@ -29,20 +29,26 @@ public class Stock {
         return symbol;
     }
 
-    public int getPrice(){ return price; }
+    public String getPrice(){ return price; }
 
-    public float getChange() { return change; }
+    public double getChange() { return change; }
 
-    public float getYearlow() { return yearlow; }
+    public double getYearlow() { return yearlow; }
 
-    public float getYearhigh() { return yearhigh; }
+    public double getYearhigh() { return yearhigh; }
 
-    public void setPrice(int p) { price = p; }
+    public void setPrice(String p) { price = p; }
 
-    public void setChange(float c) { change = c; }
+    public void setChange(double c) { change = c; }
 
-    public void setYearlow(float yl) { yearlow = yl; }
+    public void setYearlow(double yl) { yearlow = yl; }
 
-    public void setYearhigh(float yh) { yearhigh = yh; }
+    public void setYearhigh(double yh) { yearhigh = yh; }
+
+    public void printStock() {
+        System.out.println(" "+name);
+        System.out.println(" "+symbol);
+        System.out.println(" "+price);
+    }
 
 }
