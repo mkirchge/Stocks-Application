@@ -39,6 +39,7 @@ public class GUI {
         GUI for Application
      **************************/
     public GUI() {
+
         JComboBox combobox;
         AutoCompleteDecorator decorator;
         JFrame frame;
@@ -76,6 +77,7 @@ public class GUI {
             nasdaq_stocks[count++] = mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", "");
         }
 
+        Stock current = new Stock();
         combobox = new JComboBox(nasdaq_stocks);
         combobox.addActionListener ((ActionEvent e) -> {
             // parses company ticker symbol
@@ -85,7 +87,8 @@ public class GUI {
             String name = company.substring(s).replace("--", "").replace("\t", "");
             // parses the name of the company
             String name2 = name.substring(1);
-            loadStock(name2, temp);
+            Stock temp_stock = loadStock(name2,temp);
+            recentstocks.addStock(temp_stock);
         });
 
         AutoCompleteDecorator.decorate(combobox);
@@ -101,8 +104,9 @@ public class GUI {
             Stock Table
          ****************/
         // Object rowData[][] = rowBuilder(loadStock(stock))
-        Object rowData[][] = { { "aa", "aa", "aa", "aa", "aa", "aa" }, { "bb", "bb", "bb", "bb", "bb", "bb" } };
-        Object columnNames[] = { "Company", "Stock Symbol", "Price", "Percent Change (+/-)", "52-Week High", "52-Week Low" };
+        Object rowData[][] = { { "Apple Inc.", "AAPL", "EXAMPLE PRICE"} };
+
+        Object columnNames[] = { "Company", "Stock Symbol", "Price"};
         JTable table = new JTable(rowData, columnNames);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(800,600));
@@ -146,6 +150,15 @@ public class GUI {
      ****************************************/
     public static Stock loadStock(String company_name, String ticker_symbol) {
 
+        // Default stocks
+        String aapl = "https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
+        String goog = "https://www.quandl.com/api/v3/datasets/WIKI/GOOGL.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
+        String tsla = "https://www.quandl.com/api/v3/datasets/WIKI/TSLA.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
+        Stock s1 = new Stock("Apple Inc.", "AAPL");
+        Stock s2 = new Stock("Alphabet Inc. Class A", "GOOGL");
+        Stock s3 = new Stock("Tesla Inc.", "TSLA");
+
+
         // Create a JSON object
         String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
         Stock stock = new Stock(company_name, ticker_symbol);
@@ -175,41 +188,13 @@ public class GUI {
         return stock;
     }
 
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) { sb.append((char) cp); }
-        return sb.toString();
-    }
+    /**************************************
+       Stocks to add on click in combobox
+     **************************************/
+    public void addStocks(){
+        // when clicked on, get info from click and add to combobox
 
-    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally { is.close(); }
-    }
-
-    /*********************************************************
-        Builds a row for the stock that goes into the table
-     *********************************************************/
-    public String[][] rowBuilder(HashMap<String,ArrayList<String>> stock) {
-        String[][] row = new String[1][5];
-        // public Stock(String n, String s, int p, float c, float yl, float yh)
-        //Stock temp = new Stock(name, symbol, price, change, yearlow, yearhigh);
-        return row;
-    }
-
-    /*************************************************************
-        These are the stocks that will be displayed in the table
-     *************************************************************/
-    public StockList baseStocks() {
-        // DowJones, NASDAQ, NYSE, etc...
-        // Apple, Google, Amazon, Tesla, GE, Chevron,
-        StockList default_list = new StockList();
-        return default_list;
+        // add eventlistener to main function below, then call addStocks()
     }
 
     /**********
@@ -217,5 +202,7 @@ public class GUI {
      **********/
     public static void main(String[] args) {
         GUI gui = new GUI();
+
+        // need to add eventlistener inside of GUI, then call on addStocks(), then reload GUI to see the change
     }
 }
