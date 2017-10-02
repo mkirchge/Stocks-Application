@@ -35,6 +35,10 @@ public class GUI {
     private static StockList mystocks;
     private static StockList recentstocks;
 
+    public GUI(StockList sl){
+
+    }
+
     /**************************
         GUI for Application
      **************************/
@@ -89,6 +93,7 @@ public class GUI {
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
             recentstocks.addStock(temp_stock);
+            GUI g = new GUI(recentstocks);
         });
 
         AutoCompleteDecorator.decorate(combobox);
@@ -203,6 +208,6 @@ public class GUI {
     public static void main(String[] args) {
         GUI gui = new GUI();
 
-        // need to add eventlistener inside of GUI, then call on addStocks(), then reload GUI to see the change
+
     }
 }
