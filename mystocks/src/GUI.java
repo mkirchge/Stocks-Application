@@ -32,8 +32,12 @@ import org.json.JSONArray;
 
 public class GUI {
 
+    private static int tablelength = 5;
+    private static int currentrow = 0;
     private static StockList mystocks;
-    private static StockList recentstocks;
+    private static StockList recentstocks = new StockList();
+    private static Object rowData[][] = new Object[tablelength][3];
+
 
     public GUI(StockList sl){
 
@@ -92,7 +96,9 @@ public class GUI {
             // parses the name of the company
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
-            recentstocks.addStock(temp_stock);
+            rowData[currentrow++][0] = temp_stock.getName();
+            rowData[currentrow++][1] = temp_stock.getSymbol();
+            rowData[currentrow++][2] = temp_stock.getPrice();
             GUI g = new GUI(recentstocks);
         });
 
@@ -108,8 +114,6 @@ public class GUI {
         /****************
             Stock Table
          ****************/
-        // Object rowData[][] = rowBuilder(loadStock(stock))
-        Object rowData[][] = { { "Apple Inc.", "AAPL", "EXAMPLE PRICE"} };
 
         Object columnNames[] = { "Company", "Stock Symbol", "Price"};
         JTable table = new JTable(rowData, columnNames);
@@ -129,18 +133,18 @@ public class GUI {
         JPanel infoPanel = new JPanel();
         infoPanel.setBackground(Color.WHITE);
 
-        JPanel previewPanel = new JPanel();
-        previewPanel.setBackground(Color.ORANGE);
-        previewPanel.setPreferredSize(new Dimension(200, 100));
-
-        JPanel pointsPanel = new JPanel();
-        pointsPanel.setBackground(Color.RED);
-        pointsPanel.setPreferredSize(new Dimension(300, 50));
+//        JPanel previewPanel = new JPanel();
+//        previewPanel.setBackground(Color.ORANGE);
+//        previewPanel.setPreferredSize(new Dimension(200, 100));
+//
+//        JPanel pointsPanel = new JPanel();
+//        pointsPanel.setBackground(Color.RED);
+//        pointsPanel.setPreferredSize(new Dimension(300, 50));
 
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.setPreferredSize(new Dimension(200, 400));
-        infoPanel.add(previewPanel);
-        infoPanel.add(pointsPanel);
+//        infoPanel.add(previewPanel);
+//        infoPanel.add(pointsPanel);
 
         // Adding components to frame
         frame.setJMenuBar(menu);
@@ -157,33 +161,35 @@ public class GUI {
 
         // Default stocks
         String aapl = "https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        String goog = "https://www.quandl.com/api/v3/datasets/WIKI/GOOGL.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        String tsla = "https://www.quandl.com/api/v3/datasets/WIKI/TSLA.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
         Stock s1 = new Stock("Apple Inc.", "AAPL");
-        Stock s2 = new Stock("Alphabet Inc. Class A", "GOOGL");
-        Stock s3 = new Stock("Tesla Inc.", "TSLA");
-
 
         // Create a JSON object
         String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
         Stock stock = new Stock(company_name, ticker_symbol);
         JSONArray array = new JSONArray();
+        JSONArray array2;
 
         //Load data from Stocks API
         try {
             String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
+            String getJson2 = org.apache.commons.io.IOUtils.toString(new URL(aapl), "UTF-8");
+
             JSONObject json = new JSONObject(getJson);
+            JSONObject json2 = new JSONObject(getJson2);
 
             JSONObject j2 = json.getJSONObject("dataset");
             array = j2.getJSONArray("data");
+            JSONObject j2a = json2.getJSONObject("dataset");
+            array2 = j2a.getJSONArray("data");
 
             // format is: date, open, high, low, end-of-day
             // right now it is only getting the most recent day of the specified stock
             for (int i = 0; i < 1; i++) {
                 stock.setPrice(array.get(0).toString());
+                s1.setPrice(array2.get(0).toString());
             }
             stock.printStock();
-//            recentstocks.addStock(stock);
+            recentstocks.addStock(s1);
         } catch (JSONException | IOException e) {
             System.out.println("Caught exception: " + e);
         }
