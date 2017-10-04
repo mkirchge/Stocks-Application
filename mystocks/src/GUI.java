@@ -79,14 +79,15 @@ public class GUI {
          **********************************************/
         mystocks = new StockList();
         // size of nasdaw file is 3218
-        String[] nasdaq_stocks = new String[3218];
+//        String[] nasdaq_stocks = new String[3218];
         int count = 0;
-        for (int i = 0; i < 3218; i++){
-            nasdaq_stocks[count++] = mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", "");
+        combobox = new JComboBox();
+        combobox.insertItemAt("Click on dropdown to select a stock", 0);
+        for (int i = 1; i < 3218; i++){
+            combobox.insertItemAt(mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", ""), i);
         }
-
-        Stock current = new Stock();
-        combobox = new JComboBox(nasdaq_stocks);
+        combobox.setSelectedIndex(0);
+        combobox.setMaximumRowCount(10);
         combobox.addActionListener ((ActionEvent e) -> {
             // parses company ticker symbol
             String company = (String) combobox.getEditor().getItem();
@@ -99,9 +100,9 @@ public class GUI {
             if (currentrow == 4) {
                 currentrow = 0;
             }
-            rowData[currentrow][0] = temp_stock.getName();
-            rowData[currentrow][1] = temp_stock.getSymbol();
-            rowData[currentrow][2] = temp_stock.getPrice();
+            rowData[currentrow][0] = " "+temp_stock.getName();
+            rowData[currentrow][1] = " "+temp_stock.getSymbol();
+            rowData[currentrow][2] = " "+temp_stock.getPrice();
             currentrow++;
             GUI g = new GUI(recentstocks);
         });
