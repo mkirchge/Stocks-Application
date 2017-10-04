@@ -96,9 +96,13 @@ public class GUI {
             // parses the name of the company
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
-            rowData[currentrow++][0] = temp_stock.getName();
-            rowData[currentrow++][1] = temp_stock.getSymbol();
-            rowData[currentrow++][2] = temp_stock.getPrice();
+            if (currentrow == 4) {
+                currentrow = 0;
+            }
+            rowData[currentrow][0] = temp_stock.getName();
+            rowData[currentrow][1] = temp_stock.getSymbol();
+            rowData[currentrow][2] = temp_stock.getPrice();
+            currentrow++;
             GUI g = new GUI(recentstocks);
         });
 
@@ -159,37 +163,25 @@ public class GUI {
      ****************************************/
     public static Stock loadStock(String company_name, String ticker_symbol) {
 
-        // Default stocks
-        String aapl = "https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        Stock s1 = new Stock("Apple Inc.", "AAPL");
-
         // Create a JSON object
         String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
         Stock stock = new Stock(company_name, ticker_symbol);
         JSONArray array = new JSONArray();
-        JSONArray array2;
 
         //Load data from Stocks API
         try {
             String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
-            String getJson2 = org.apache.commons.io.IOUtils.toString(new URL(aapl), "UTF-8");
 
             JSONObject json = new JSONObject(getJson);
-            JSONObject json2 = new JSONObject(getJson2);
 
             JSONObject j2 = json.getJSONObject("dataset");
             array = j2.getJSONArray("data");
-            JSONObject j2a = json2.getJSONObject("dataset");
-            array2 = j2a.getJSONArray("data");
-
             // format is: date, open, high, low, end-of-day
             // right now it is only getting the most recent day of the specified stock
             for (int i = 0; i < 1; i++) {
-                stock.setPrice(array.get(0).toString());
-                s1.setPrice(array2.get(0).toString());
+                JSONArray temparray = array.getJSONArray(i);
+                stock.setPrice(temparray.getString(4));
             }
-            stock.printStock();
-            recentstocks.addStock(s1);
         } catch (JSONException | IOException e) {
             System.out.println("Caught exception: " + e);
         }
