@@ -122,6 +122,8 @@ public class GUI {
 
         Object columnNames[] = { "Company", "Stock Symbol", "Price"};
         JTable table = new JTable(rowData, columnNames);
+        table.setRowHeight(table.getRowHeight()+10);
+        table.setFont(new Font("Arial Unicode MS", Font.BOLD, 20));
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(800,600));
 
@@ -140,11 +142,11 @@ public class GUI {
 
 //        JPanel previewPanel = new JPanel();
 //        previewPanel.setBackground(Color.ORANGE);
-//        previewPanel.setPreferredSize(new Dimension(200, 100));
+//        previewPanel.setPreferredSize(new Dimension(100, 300));
 //
 //        JPanel pointsPanel = new JPanel();
 //        pointsPanel.setBackground(Color.RED);
-//        pointsPanel.setPreferredSize(new Dimension(300, 50));
+//        pointsPanel.setPreferredSize(new Dimension(300, 100));
 
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.setPreferredSize(new Dimension(200, 400));
