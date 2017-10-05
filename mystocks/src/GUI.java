@@ -42,12 +42,31 @@ public class GUI {
             Menu bar for stock search
          *******************************/
         JMenuBar menu = new JMenuBar();
-        JMenu menu1 = new JMenu("Menu");
-        JMenu menu2 = new JMenu("Stock Search");
-        JMenu menu3 = new JMenu("News");
-        menu.add(menu1);
-        menu1.add(menu2);
-        menu1.add(menu3);
+        JButton button1 = new JButton("Stock Search");
+        button1.setBackground(new Color(211,211,211));
+        button1.setForeground(Color.BLACK);
+        button1.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton button2 = new JButton("News");
+        button2.setBackground(new Color(211,211,211));
+        button2.setForeground(Color.BLACK);
+        button2.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton button3 = new JButton("Graphs");
+        button3.setBackground(new Color(211,211,211));
+        button3.setForeground(Color.BLACK);
+        button3.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton button4 = new JButton("Ideas");
+        button4.setBackground(new Color(211,211,211));
+        button4.setForeground(Color.BLACK);
+        button4.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton button5 = new JButton("Help");
+        button5.setBackground(new Color(211,211,211));
+        button5.setForeground(Color.BLACK);
+        button5.setFont(new Font("Arial", Font.BOLD, 14));
+        menu.add(button1);
+        menu.add(button2);
+        menu.add(button3);
+        menu.add(button4);
+        menu.add(button5);
 
         /**********************************************
             Creating the frame for the application
