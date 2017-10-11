@@ -2,10 +2,14 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class IdeasPage {
+
+    private static Object favTable[][] = new Object[10][2];
+
 
     public IdeasPage(StockList sl){
 
@@ -60,10 +64,14 @@ public class IdeasPage {
         /***********
          PANELS
          ***********/
+        Object fav_columnNames[] = { "Ticker", "Price"};
+        JTable fav_table = new JTable(favTable, fav_columnNames);
+        JScrollPane fav_bar = new JScrollPane(fav_table);
         JPanel stockPanel = new JPanel();
         stockPanel.setBackground(Color.GREEN);
         stockPanel.setPreferredSize(new Dimension(300, 400));
         JPanel infoPanel = new JPanel();
+        infoPanel.add(fav_bar, BorderLayout.CENTER);
         infoPanel.setBackground(Color.WHITE);
 //        JPanel previewPanel = new JPanel();
 //        previewPanel.setBackground(Color.ORANGE);
@@ -75,6 +83,14 @@ public class IdeasPage {
         infoPanel.setPreferredSize(new Dimension(200, 400));
 //        infoPanel.add(previewPanel);
 //        infoPanel.add(pointsPanel);
+        TitledBorder fav_panel_title = new TitledBorder("FAVORITES");
+        fav_panel_title.setTitleJustification(TitledBorder.CENTER);
+        fav_panel_title.setTitlePosition(TitledBorder.TOP);
+        fav_panel_title.setTitleFont(new Font("Arial", Font.ITALIC, 14));
+        infoPanel.setBorder(fav_panel_title);
+
+
+
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.add(infoPanel, BorderLayout.EAST);

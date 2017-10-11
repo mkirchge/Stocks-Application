@@ -8,13 +8,13 @@
 
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import java.awt.event.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -22,9 +22,10 @@ import org.json.JSONArray;
 public class GUI {
     private static int tablelength = 5;
     private static int currentrow = 0;
+    private static int fav_row = 0;
     private static Object rowData[][] = new Object[tablelength][3];
-    private StockList favorites = new StockList();
-    private JTable fav_table;
+    private ArrayList<Stock> favorites = new ArrayList<>();
+    private static Object favTable[][] = new Object[10][2];
 
     /**************************
         GUI for Application
@@ -96,10 +97,14 @@ public class GUI {
             // parses the name of the company
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
+            favorites.add(temp_stock);
             if (currentrow == 4) { currentrow = 0; }
+            if (fav_row == 10) { fav_row = 0; }
             rowData[currentrow][0] = " "+temp_stock.getName();
             rowData[currentrow][1] = " "+temp_stock.getSymbol();
             rowData[currentrow++][2] = " "+temp_stock.getPrice();
+            favTable[fav_row][0] = temp_stock.getSymbol();
+            favTable[fav_row][1] = temp_stock.getPrice();
         });
         AutoCompleteDecorator.decorate(combobox);
         frame.setSize(1200,800);
@@ -125,10 +130,14 @@ public class GUI {
         /***********
             PANELS
          ***********/
+        Object fav_columnNames[] = { "Ticker", "Price"};
+        JTable fav_table = new JTable(favTable, fav_columnNames);
+        JScrollPane fav_bar = new JScrollPane(fav_table);
         JPanel stockPanel = new JPanel();
         stockPanel.setBackground(Color.GREEN);
         stockPanel.setPreferredSize(new Dimension(300, 400));
         JPanel infoPanel = new JPanel();
+        infoPanel.add(fav_bar, BorderLayout.CENTER);
         infoPanel.setBackground(Color.WHITE);
         JPanel previewPanel = new JPanel();
         previewPanel.setBackground(Color.ORANGE);
@@ -142,11 +151,18 @@ public class GUI {
 //        infoPanel.add(pointsPanel);
 
 
+
         /***********************************************************
             Add favorites StockList to infopanel (in smaller table)
             This should appear on every window (page)
          ***********************************************************/
-        
+        TitledBorder fav_panel_title = new TitledBorder("FAVORITES");
+        fav_panel_title.setTitleJustification(TitledBorder.CENTER);
+        fav_panel_title.setTitlePosition(TitledBorder.TOP);
+        fav_panel_title.setTitleFont(new Font("Arial", Font.ITALIC, 14));
+        infoPanel.setBorder(fav_panel_title);
+
+
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.getContentPane().add(scrollPane);
