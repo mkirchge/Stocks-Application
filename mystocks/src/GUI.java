@@ -8,6 +8,8 @@
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import java.awt.event.*;
@@ -22,6 +24,7 @@ public class GUI {
     private static int currentrow = 0;
     private static Object rowData[][] = new Object[tablelength][3];
     private StockList favorites = new StockList();
+    private JTable fav_table;
 
     /**************************
         GUI for Application
@@ -93,7 +96,6 @@ public class GUI {
             // parses the name of the company
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
-            favorites.addStock(temp_stock);
             if (currentrow == 4) { currentrow = 0; }
             rowData[currentrow][0] = " "+temp_stock.getName();
             rowData[currentrow][1] = " "+temp_stock.getSymbol();
@@ -144,8 +146,7 @@ public class GUI {
             Add favorites StockList to infopanel (in smaller table)
             This should appear on every window (page)
          ***********************************************************/
-
-
+        
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.getContentPane().add(scrollPane);
