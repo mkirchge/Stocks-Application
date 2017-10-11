@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class IdeasPage {
 
-    public IdeasPage(){
+    public IdeasPage(StockList sl){
 
         JComboBox combobox;
         AutoCompleteDecorator decorator;
@@ -45,11 +45,11 @@ public class IdeasPage {
         button5.setBackground(new Color(211,211,211));
         button5.setForeground(Color.BLACK);
         button5.setFont(new Font("Arial", Font.BOLD, 14));
-        button1.addActionListener( (ActionEvent e) -> { new GUI(); });
-        button2.addActionListener( (ActionEvent e) -> { new NewsPage(); });
-        button3.addActionListener( (ActionEvent e) -> { new GraphsPage(); });
-        button4.addActionListener( (ActionEvent e) -> { new IdeasPage(); });
-        button5.addActionListener( (ActionEvent e) -> { new HelpPage(); });
+        button1.addActionListener( (ActionEvent e) -> { new GUI(sl); });
+        button2.addActionListener( (ActionEvent e) -> { new NewsPage(sl); });
+        button3.addActionListener( (ActionEvent e) -> { new GraphsPage(sl); });
+        button4.addActionListener( (ActionEvent e) -> { new IdeasPage(sl); });
+        button5.addActionListener( (ActionEvent e) -> { new HelpPage(sl); });
         menu.add(button1);
         menu.add(button2);
         menu.add(button3);

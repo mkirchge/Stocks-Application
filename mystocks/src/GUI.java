@@ -21,11 +21,12 @@ public class GUI {
     private static int tablelength = 5;
     private static int currentrow = 0;
     private static Object rowData[][] = new Object[tablelength][3];
+    private StockList favorites = new StockList();
 
     /**************************
         GUI for Application
      **************************/
-    public GUI() {
+    public GUI(StockList sl) {
         JComboBox combobox;
         AutoCompleteDecorator decorator;
         JFrame frame;
@@ -62,11 +63,11 @@ public class GUI {
         button5.setBackground(new Color(211,211,211));
         button5.setForeground(Color.BLACK);
         button5.setFont(new Font("Arial", Font.BOLD, 14));
-        button1.addActionListener( (ActionEvent e) -> { new GUI(); });
-        button2.addActionListener( (ActionEvent e) -> { new NewsPage(); });
-        button3.addActionListener( (ActionEvent e) -> { new GraphsPage(); });
-        button4.addActionListener( (ActionEvent e) -> { new IdeasPage(); });
-        button5.addActionListener( (ActionEvent e) -> { new HelpPage(); });
+        button1.addActionListener( (ActionEvent e) -> { new GUI(sl); });
+        button2.addActionListener( (ActionEvent e) -> { new NewsPage(sl); });
+        button3.addActionListener( (ActionEvent e) -> { new GraphsPage(sl); });
+        button4.addActionListener( (ActionEvent e) -> { new IdeasPage(sl); });
+        button5.addActionListener( (ActionEvent e) -> { new HelpPage(sl); });
         menu.add(button1);
         menu.add(button2);
         menu.add(button3);
@@ -92,6 +93,7 @@ public class GUI {
             // parses the name of the company
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
+            favorites.addStock(temp_stock);
             if (currentrow == 4) { currentrow = 0; }
             rowData[currentrow][0] = " "+temp_stock.getName();
             rowData[currentrow][1] = " "+temp_stock.getSymbol();
@@ -126,16 +128,24 @@ public class GUI {
         stockPanel.setPreferredSize(new Dimension(300, 400));
         JPanel infoPanel = new JPanel();
         infoPanel.setBackground(Color.WHITE);
-//        JPanel previewPanel = new JPanel();
-//        previewPanel.setBackground(Color.ORANGE);
-//        previewPanel.setPreferredSize(new Dimension(100, 300));
+        JPanel previewPanel = new JPanel();
+        previewPanel.setBackground(Color.ORANGE);
+        previewPanel.setPreferredSize(new Dimension(100, 300));
 //        JPanel pointsPanel = new JPanel();
 //        pointsPanel.setBackground(Color.RED);
 //        pointsPanel.setPreferredSize(new Dimension(300, 100));
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        infoPanel.setPreferredSize(new Dimension(200, 400));
-//        infoPanel.add(previewPanel);
+        infoPanel.setPreferredSize(new Dimension(200, 600));
+        infoPanel.add(previewPanel);
 //        infoPanel.add(pointsPanel);
+
+
+        /***********************************************************
+            Add favorites StockList to infopanel (in smaller table)
+            This should appear on every window (page)
+         ***********************************************************/
+
+
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.getContentPane().add(scrollPane);
@@ -171,5 +181,8 @@ public class GUI {
     /**********
         Main
      **********/
-    public static void main(String[] args) { GUI gui = new GUI(); }
+    public static void main(String[] args) {
+        StockList emptylist = new StockList();
+        GUI gui = new GUI(emptylist);
+    }
 }
