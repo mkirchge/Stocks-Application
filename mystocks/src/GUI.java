@@ -20,12 +20,14 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 public class GUI {
+
     private static int tablelength = 5;
     private static int currentrow = 0;
     private static int fav_row = 0;
     private static Object rowData[][] = new Object[tablelength][3];
     private ArrayList<Stock> favorites = new ArrayList<>();
     private static Object favTable[][] = new Object[10][2];
+    JFrame frame;
 
     /**************************
         GUI for Application
@@ -33,7 +35,7 @@ public class GUI {
     public GUI(StockList sl) {
         JComboBox combobox;
         AutoCompleteDecorator decorator;
-        JFrame frame;
+
 
         /***************************************
             Frame that everything goes into
@@ -67,11 +69,31 @@ public class GUI {
         button5.setBackground(new Color(211,211,211));
         button5.setForeground(Color.BLACK);
         button5.setFont(new Font("Arial", Font.BOLD, 14));
-        button1.addActionListener( (ActionEvent e) -> { new GUI(sl); });
-        button2.addActionListener( (ActionEvent e) -> { new NewsPage(sl); });
-        button3.addActionListener( (ActionEvent e) -> { new GraphsPage(sl); });
-        button4.addActionListener( (ActionEvent e) -> { new IdeasPage(sl); });
-        button5.addActionListener( (ActionEvent e) -> { new HelpPage(sl); });
+        button1.addActionListener( (ActionEvent e) ->
+        {
+            destroyFrame();
+            new GUI(sl);
+        });
+        button2.addActionListener( (ActionEvent e) ->
+        {
+            destroyFrame();
+            new NewsPage(sl);
+        });
+        button3.addActionListener( (ActionEvent e) ->
+        {
+            destroyFrame();
+            new GraphsPage(sl);
+        });
+        button4.addActionListener( (ActionEvent e) ->
+        {
+            destroyFrame();
+            new IdeasPage(sl);
+        });
+        button5.addActionListener( (ActionEvent e) ->
+        {
+            destroyFrame();
+            new HelpPage(sl);
+        });
         menu.add(button1);
         menu.add(button2);
         menu.add(button3);
@@ -194,6 +216,8 @@ public class GUI {
         }
         return stock;
     }
+
+    public void destroyFrame(){ frame.dispose();}
 
     /**********
         Main
