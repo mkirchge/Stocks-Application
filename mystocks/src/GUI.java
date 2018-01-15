@@ -119,15 +119,17 @@ public class GUI extends JComponent {
             // parses the name of the company
             String name2 = name.substring(1);
             Stock temp_stock = loadStock(name2,temp);
-            favorites.add(temp_stock);
+            //favorites.add(temp_stock);
             if (currentrow == 4) { currentrow = 0; }
             if (fav_row == 10) { fav_row = 0; }
             rowData[currentrow][0] = " "+temp_stock.getName();
             rowData[currentrow][1] = " "+temp_stock.getSymbol();
             rowData[currentrow++][2] = " "+temp_stock.getPrice();
-            favTable[fav_row][0] = temp_stock.getSymbol();
-            favTable[fav_row][1] = temp_stock.getPrice();
+            //favTable[fav_row][0] = temp_stock.getSymbol();
+            //favTable[fav_row][1] = temp_stock.getPrice();
         });
+
+
         AutoCompleteDecorator.decorate(combobox);
         frame.setSize(1200,800);
         frame.setLocationRelativeTo(null);
@@ -139,6 +141,8 @@ public class GUI extends JComponent {
         /****************
             Stock Table
          ****************/
+        JLabel label = new JLabel("Recent Stocks");
+        label.setFont(new Font("Arial", Font.BOLD, 24));
         Object columnNames[] = { "Company", "Stock Symbol", "Price"};
         JTable table = new JTable(rowData, columnNames);
         table.setEnabled(false);
@@ -149,6 +153,13 @@ public class GUI extends JComponent {
         scrollPane.setPreferredSize(new Dimension(800,600));
         MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.BLACK);
         table.setBorder(border);
+        JPanel mainPanel = new JPanel();
+        TitledBorder stocksTableBorder = new TitledBorder("Recently Viewed Stocks");
+        stocksTableBorder.setTitleJustification(TitledBorder.CENTER);
+        stocksTableBorder.setTitlePosition(TitledBorder.TOP);
+        stocksTableBorder.setTitleFont(new Font("Arial", Font.BOLD, 24));
+        mainPanel.add(scrollPane);
+        mainPanel.setBorder(stocksTableBorder);
 
         /***********
             PANELS
@@ -188,7 +199,7 @@ public class GUI extends JComponent {
 
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
-        frame.getContentPane().add(scrollPane);
+        frame.getContentPane().add(mainPanel);
         frame.add(infoPanel, BorderLayout.EAST);
         frame.setVisible(true);
     }
