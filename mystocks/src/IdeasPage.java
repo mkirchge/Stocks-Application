@@ -6,7 +6,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class IdeasPage {
+public class IdeasPage extends JComponent {
 
     private static Object favTable[][] = new Object[10][2];
     JFrame frame;
@@ -51,28 +51,28 @@ public class IdeasPage {
         button5.setFont(new Font("Arial", Font.BOLD, 14));
         button1.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new GUI(sl));
             destroyFrame();
-            new GUI(sl);
         });
         button2.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new NewsPage(sl));
             destroyFrame();
-            new NewsPage(sl);
         });
         button3.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new GraphsPage(sl));
             destroyFrame();
-            new GraphsPage(sl);
         });
         button4.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new IdeasPage(sl));
             destroyFrame();
-            new IdeasPage(sl);
         });
         button5.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new HelpPage(sl));
             destroyFrame();
-            new HelpPage(sl);
         });
         menu.add(button1);
         menu.add(button2);

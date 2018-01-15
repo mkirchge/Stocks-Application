@@ -19,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-public class GUI {
+public class GUI extends JComponent {
 
     private static int tablelength = 5;
     private static int currentrow = 0;
@@ -71,28 +71,28 @@ public class GUI {
         button5.setFont(new Font("Arial", Font.BOLD, 14));
         button1.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new GUI(sl));
             destroyFrame();
-            new GUI(sl);
         });
         button2.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new NewsPage(sl));
             destroyFrame();
-            new NewsPage(sl);
         });
         button3.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new GraphsPage(sl));
             destroyFrame();
-            new GraphsPage(sl);
         });
         button4.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new IdeasPage(sl));
             destroyFrame();
-            new IdeasPage(sl);
         });
         button5.addActionListener( (ActionEvent e) ->
         {
+            frame.setContentPane(new HelpPage(sl));
             destroyFrame();
-            new HelpPage(sl);
         });
         menu.add(button1);
         menu.add(button2);
@@ -141,6 +141,7 @@ public class GUI {
          ****************/
         Object columnNames[] = { "Company", "Stock Symbol", "Price"};
         JTable table = new JTable(rowData, columnNames);
+        table.setEnabled(false);
         table.setRowHeight(table.getRowHeight()+10);
         table.getTableHeader().setFont(new Font("Lucide Grande", Font.BOLD, 20));
         table.setFont(new Font("Lucida Grande", Font.BOLD, 16));
