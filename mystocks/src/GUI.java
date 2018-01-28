@@ -21,10 +21,11 @@ import org.json.JSONArray;
 
 public class GUI extends JComponent {
 
-    private static int tablelength = 5;
-    private static int currentrow = 0;
-    private static int fav_row = 0;
-    private static Object rowData[][] = new Object[tablelength][3];
+    private static Integer tablelength = 5;
+    private static Integer tablecols = 3;
+    private static Integer currentrow = 0;
+    private static Integer fav_row = 0;
+    private static Object rowData[][] = new Object[tablelength][tablecols];
     private ArrayList<Stock> favorites = new ArrayList<>();
     private static Object favTable[][] = new Object[10][2];
     JFrame frame;
@@ -149,6 +150,7 @@ public class GUI extends JComponent {
         table.setRowHeight(table.getRowHeight()+10);
         table.getTableHeader().setFont(new Font("Lucide Grande", Font.BOLD, 20));
         table.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+        table.setGridColor(Color.black);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(800,600));
         MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.BLACK);
@@ -166,6 +168,7 @@ public class GUI extends JComponent {
          ***********/
         Object fav_columnNames[] = { "Ticker", "Price"};
         JTable fav_table = new JTable(favTable, fav_columnNames);
+        fav_table.setGridColor(Color.black);
         JScrollPane fav_bar = new JScrollPane(fav_table);
         JPanel stockPanel = new JPanel();
         stockPanel.setBackground(Color.GREEN);
@@ -221,7 +224,7 @@ public class GUI extends JComponent {
             // format is: date, open, high, low, end-of-day
             for (int i = 0; i < 1; i++) {
                 JSONArray temparray = array.getJSONArray(i);
-                stock.setPrice(temparray.getString(4));
+                stock.setPrice(temparray.get(4).toString());
             }
         } catch (JSONException | IOException e) {
             System.out.println("Caught exception: " + e);

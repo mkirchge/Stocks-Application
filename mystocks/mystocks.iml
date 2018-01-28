@@ -64,5 +64,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="commons-io-2.5-javadoc" level="project" />
+    <orderEntry type="library" name="Java " level="project" />
   </component>
 </module>

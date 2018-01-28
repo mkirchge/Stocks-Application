@@ -5,9 +5,9 @@
 public class Stock {
 
     private String name;
-    private double change;
-    private double yearlow;
-    private double yearhigh;
+    private Double change;
+    private Double yearlow;
+    private Double yearhigh;
     private String symbol;
     private String price;
 
