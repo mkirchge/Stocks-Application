@@ -111,6 +111,7 @@ public class GUI extends JComponent {
         for (int i = 1; i < 3218; i++){ combobox.insertItemAt(mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", ""), i); }
         combobox.setSelectedIndex(0);
         combobox.setMaximumRowCount(10);
+        combobox.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         combobox.addActionListener ((ActionEvent e) -> {
             // parses company ticker symbol
             String company = (String) combobox.getEditor().getItem();
@@ -132,7 +133,7 @@ public class GUI extends JComponent {
 
 
         AutoCompleteDecorator.decorate(combobox);
-        frame.setSize(1200,800);
+        frame.setSize(1200,1000);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());

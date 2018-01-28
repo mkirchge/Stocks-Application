@@ -86,6 +86,7 @@ public class IdeasPage extends JComponent {
          ***********/
         Object fav_columnNames[] = { "Ticker", "Price"};
         JTable fav_table = new JTable(favTable, fav_columnNames);
+        fav_table.setGridColor(Color.black);
         JScrollPane fav_bar = new JScrollPane(fav_table);
         JPanel stockPanel = new JPanel();
         stockPanel.setBackground(Color.GREEN);
