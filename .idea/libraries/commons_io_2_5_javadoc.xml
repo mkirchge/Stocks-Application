@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="commons-io-2.5-javadoc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/commons-io-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/gson-2.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/gson-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/jackson-all-1.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/jackson-mapper-asl-1.9.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/jackson-mapper-asl-1.9.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/javax.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/jersey-all-2.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/json-jena-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/jstl-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/mysql-connector-java-5.1.42.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/swing-layout-1.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/swingx.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/commons-io-2.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../Java .jar files/java-json.jar!/" />
+    </SOURCES>
+  </library>
+</component>
