@@ -91,11 +91,60 @@ public class GraphsPage extends JComponent {
             frame.setContentPane(new HelpPage(sl));
             destroyFrame();
         });
+
+        JButton fiveDayButton = new JButton("5 Day Graph");
+        fiveDayButton.setBackground(new Color(211,211,211));
+        fiveDayButton.setForeground(Color.BLACK);
+        fiveDayButton.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton tenDayButton = new JButton("10 Day Graph");
+        tenDayButton.setBackground(new Color(211,211,211));
+        tenDayButton.setForeground(Color.BLACK);
+        tenDayButton.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton oneMonthButton = new JButton("30 Day Graph");
+        oneMonthButton.setBackground(new Color(211,211,211));
+        oneMonthButton.setForeground(Color.BLACK);
+        oneMonthButton.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton oneYearButton = new JButton("One Year Graph");
+        oneYearButton.setBackground(new Color(211,211,211));
+        oneYearButton.setForeground(Color.BLACK);
+        oneYearButton.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton twoYearButton = new JButton("2 Year Graph");
+        twoYearButton.setBackground(new Color(211,211,211));
+        twoYearButton.setForeground(Color.BLACK);
+        twoYearButton.setFont(new Font("Arial", Font.BOLD, 14));
+
+        fiveDayButton.addActionListener( (ActionEvent e) ->
+        {
+            // NEEDS TO BE IMPLEMENTED
+        });
+        tenDayButton.addActionListener( (ActionEvent e) ->
+        {
+            // NEEDS TO BE IMPLEMENTED
+        });
+        oneMonthButton.addActionListener( (ActionEvent e) ->
+        {
+            // NEEDS TO BE IMPLEMENTED
+        });
+        oneYearButton.addActionListener( (ActionEvent e) ->
+        {
+            // NEEDS TO BE IMPLEMENTED
+        });
+        twoYearButton.addActionListener( (ActionEvent e) ->
+        {
+            // NEEDS TO BE IMPLEMENTED
+        });
+
+
         menu.add(button1);
         menu.add(button2);
         menu.add(button3);
         menu.add(button4);
         menu.add(button5);
+        menu.add(fiveDayButton);
+        menu.add(tenDayButton);
+        menu.add(oneMonthButton);
+        menu.add(oneYearButton);
+        menu.add(twoYearButton);
 
         /**********************************************
                  Creating the combobox for stocks
@@ -118,13 +167,10 @@ public class GraphsPage extends JComponent {
             String name = company.substring(s).replace("--", "").replace("\t", "");
             // parses the name of the company
             String name2 = name.substring(1);
-//            Stock temp_stock = loadStock(name2,temp);
-            ArrayList<Double> yearPrices = loadStock1Year(name2,temp);
+            ArrayList<Double> yearPrices = StockLoader.loadStock1Year(name2,temp);
             for (int i = 0; i < yearPrices.size(); i++){
-//                System.out.println(yearPrices.get(i));
                 dataset.addValue(yearPrices.get(i), name2, Integer.toString(i));
             }
-//            dataset.addValue(Double.parseDouble(temp_stock.getPrice()), temp_stock.getName(), "");
         });
 
 
@@ -144,9 +190,7 @@ public class GraphsPage extends JComponent {
         CategoryPlot cp = (CategoryPlot) (lineChart).getPlot();
         CategoryAxis ca = cp.getDomainAxis();
         ca.setCategoryLabelPositions(CategoryLabelPositions.DOWN_90);
-
         lineChart.setBackgroundPaint(Color.white);
-
         ChartPanel chartPanel = new ChartPanel(lineChart);
         JPanel jp1 = new JPanel();
         jp1.add(chartPanel);
@@ -187,92 +231,6 @@ public class GraphsPage extends JComponent {
     /****************************************
      Gets stock requested in search bar
      ****************************************/
-    public static ArrayList<Double> loadStock5Day(String company_name, String ticker_symbol) {
-        // Create a JSON object
-        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        JSONArray array;
-        ArrayList<Double> prices = new ArrayList<>();
-        //Load data from Stocks API
-        try {
-            String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
-            JSONObject json = new JSONObject(getJson);
-            JSONObject j2 = json.getJSONObject("dataset");
-            array = j2.getJSONArray("data");
-            // format is: date, open, high, low, end-of-day
-            for (int i = 4; i >= 0; i--){
-                JSONArray temparray = array.getJSONArray(i);
-                prices.add(Double.parseDouble(temparray.get(4).toString()));
-            }
-        } catch (JSONException | IOException e) {
-            System.out.println("Caught exception: " + e);
-        }
-        return prices;
-    }
 
-    public static ArrayList<Double> loadStock10Day(String company_name, String ticker_symbol) {
-        // Create a JSON object
-        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        JSONArray array;
-        ArrayList<Double> prices = new ArrayList<>();
-        //Load data from Stocks API
-        try {
-            String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
-            JSONObject json = new JSONObject(getJson);
-            JSONObject j2 = json.getJSONObject("dataset");
-            array = j2.getJSONArray("data");
-            // format is: date, open, high, low, end-of-day
-            for (int i = 9; i >= 0; i--){
-                JSONArray temparray = array.getJSONArray(i);
-                prices.add(Double.parseDouble(temparray.get(4).toString()));
-            }
-        } catch (JSONException | IOException e) {
-            System.out.println("Caught exception: " + e);
-        }
-        return prices;
-    }
-
-    public static ArrayList<Double> loadStock1Year(String company_name, String ticker_symbol) {
-        // Create a JSON object
-        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        JSONArray array;
-        ArrayList<Double> prices = new ArrayList<>();
-        //Load data from Stocks API
-        try {
-            String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
-            JSONObject json = new JSONObject(getJson);
-            JSONObject j2 = json.getJSONObject("dataset");
-            array = j2.getJSONArray("data");
-            // format is: date, open, high, low, end-of-day
-            for (int i = 364; i >= 0; i--){
-                JSONArray temparray = array.getJSONArray(i);
-                prices.add(Double.parseDouble(temparray.get(4).toString()));
-            }
-        } catch (JSONException | IOException e) {
-            System.out.println("Caught exception: " + e);
-        }
-        return prices;
-    }
-
-    public static ArrayList<Double> loadStock5Year(String company_name, String ticker_symbol) {
-        // Create a JSON object
-        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        JSONArray array;
-        ArrayList<Double> prices = new ArrayList<>();
-        //Load data from Stocks API
-        try {
-            String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
-            JSONObject json = new JSONObject(getJson);
-            JSONObject j2 = json.getJSONObject("dataset");
-            array = j2.getJSONArray("data");
-            // format is: date, open, high, low, end-of-day
-            for (int i = 728; i >= 0; i--){
-                JSONArray temparray = array.getJSONArray(i);
-                prices.add(Double.parseDouble(temparray.get(4).toString()));
-            }
-        } catch (JSONException | IOException e) {
-            System.out.println("Caught exception: " + e);
-        }
-        return prices;
-    }
 
 }
