@@ -11,13 +11,7 @@ import javax.swing.border.*;
 import java.awt.*;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import java.awt.event.*;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONArray;
 
 public class GUI extends JComponent {
 
@@ -36,7 +30,6 @@ public class GUI extends JComponent {
     public GUI(StockList sl) {
         JComboBox combobox;
         AutoCompleteDecorator decorator;
-
 
         /***************************************
             Frame that everything goes into
@@ -120,7 +113,7 @@ public class GUI extends JComponent {
             String name = company.substring(s).replace("--", "").replace("\t", "");
             // parses the name of the company
             String name2 = name.substring(1);
-            Stock temp_stock = loadStock(name2,temp);
+            Stock temp_stock = StockLoader.loadStock(name2,temp);
             //favorites.add(temp_stock);
             if (currentrow == 4) { currentrow = 0; }
             if (fav_row == 10) { fav_row = 0; }
@@ -180,15 +173,9 @@ public class GUI extends JComponent {
         JPanel previewPanel = new JPanel();
         previewPanel.setBackground(Color.ORANGE);
         previewPanel.setPreferredSize(new Dimension(100, 300));
-//        JPanel pointsPanel = new JPanel();
-//        pointsPanel.setBackground(Color.RED);
-//        pointsPanel.setPreferredSize(new Dimension(300, 100));
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.setPreferredSize(new Dimension(200, 600));
         infoPanel.add(previewPanel);
-//        infoPanel.add(pointsPanel);
-
-
 
         /***********************************************************
             Add favorites StockList to infopanel (in smaller table)
@@ -200,39 +187,12 @@ public class GUI extends JComponent {
         fav_panel_title.setTitleFont(new Font("Arial", Font.ITALIC, 14));
         infoPanel.setBorder(fav_panel_title);
 
-
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.getContentPane().add(mainPanel);
         frame.add(infoPanel, BorderLayout.EAST);
         frame.setVisible(true);
     }
-
-    /****************************************
-        Gets stock requested in search bar
-     ****************************************/
-    public static Stock loadStock(String company_name, String ticker_symbol) {
-        // Create a JSON object
-        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + ticker_symbol + ".json?api_key=tDSfEvKgfs6q-4KhB7Nd";
-        Stock stock = new Stock(company_name, ticker_symbol);
-        JSONArray array;
-        //Load data from Stocks API
-        try {
-            String getJson = org.apache.commons.io.IOUtils.toString(new URL(url), "UTF-8");
-            JSONObject json = new JSONObject(getJson);
-            JSONObject j2 = json.getJSONObject("dataset");
-            array = j2.getJSONArray("data");
-            // format is: date, open, high, low, end-of-day
-            for (int i = 0; i < 1; i++) {
-                JSONArray temparray = array.getJSONArray(i);
-                stock.setPrice(temparray.get(4).toString());
-            }
-        } catch (JSONException | IOException e) {
-            System.out.println("Caught exception: " + e);
-        }
-        return stock;
-    }
-
     public void destroyFrame(){ frame.dispose();}
 
     /**********

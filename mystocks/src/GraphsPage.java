@@ -7,19 +7,11 @@ import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.ui.RefineryUtilities;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class GraphsPage extends JComponent {
@@ -31,8 +23,7 @@ public class GraphsPage extends JComponent {
     public GraphsPage(StockList sl){
 
         JComboBox combobox;
-        AutoCompleteDecorator decorator;
-
+        AutoCompleteDecorator decorator = new AutoCompleteDecorator();
 
         /***************************************
          Frame that everything goes into
@@ -91,7 +82,6 @@ public class GraphsPage extends JComponent {
             frame.setContentPane(new HelpPage(sl));
             destroyFrame();
         });
-
         JButton fiveDayButton = new JButton("5 Day Graph");
         fiveDayButton.setBackground(new Color(211,211,211));
         fiveDayButton.setForeground(Color.BLACK);
@@ -108,10 +98,10 @@ public class GraphsPage extends JComponent {
         oneYearButton.setBackground(new Color(211,211,211));
         oneYearButton.setForeground(Color.BLACK);
         oneYearButton.setFont(new Font("Arial", Font.BOLD, 14));
-        JButton twoYearButton = new JButton("2 Year Graph");
-        twoYearButton.setBackground(new Color(211,211,211));
-        twoYearButton.setForeground(Color.BLACK);
-        twoYearButton.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton fiveYearButton = new JButton("2 Year Graph");
+        fiveYearButton.setBackground(new Color(211,211,211));
+        fiveYearButton.setForeground(Color.BLACK);
+        fiveYearButton.setFont(new Font("Arial", Font.BOLD, 14));
 
         fiveDayButton.addActionListener( (ActionEvent e) ->
         {
@@ -129,11 +119,10 @@ public class GraphsPage extends JComponent {
         {
             // NEEDS TO BE IMPLEMENTED
         });
-        twoYearButton.addActionListener( (ActionEvent e) ->
+        fiveYearButton.addActionListener( (ActionEvent e) ->
         {
             // NEEDS TO BE IMPLEMENTED
         });
-
 
         menu.add(button1);
         menu.add(button2);
@@ -144,12 +133,11 @@ public class GraphsPage extends JComponent {
         menu.add(tenDayButton);
         menu.add(oneMonthButton);
         menu.add(oneYearButton);
-        menu.add(twoYearButton);
+        menu.add(fiveYearButton);
 
         /**********************************************
                  Creating the combobox for stocks
          **********************************************/
-
         StockList mystocks = new StockList();
         combobox = new JComboBox();
         combobox.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
@@ -173,8 +161,7 @@ public class GraphsPage extends JComponent {
             }
         });
 
-
-        AutoCompleteDecorator.decorate(combobox);
+        decorator.decorate(combobox);
         frame.setSize(1200,800);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -217,8 +204,6 @@ public class GraphsPage extends JComponent {
         fav_panel_title.setTitleFont(new Font("Arial", Font.ITALIC, 14));
         infoPanel.setBorder(fav_panel_title);
 
-
-
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.add(chartPanel);
@@ -227,10 +212,5 @@ public class GraphsPage extends JComponent {
 
     }
     public void destroyFrame(){ frame.dispose();}
-
-    /****************************************
-     Gets stock requested in search bar
-     ****************************************/
-
 
 }

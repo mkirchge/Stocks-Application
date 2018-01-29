@@ -1,6 +1,3 @@
-/**
- * Created by maxkirchgesner on 4/18/17.
- */
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,12 +11,11 @@ public class StockList {
 
     public StockList(){
         stocks = new ArrayList<Stock>();
-
         String line;
+
         try {
             FileReader fileReader = new FileReader(nasdaqfile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
             while((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split("#");
                 for (int i = 0; i < split.length; i++){
@@ -28,7 +24,6 @@ public class StockList {
                 Stock temp = new Stock(split[1],split[0]);
                 stocks.add(temp);
             }
-
             bufferedReader.close();
         } catch(FileNotFoundException e) {
             System.out.println("Unable to open file '" + nasdaqfile + "'");
@@ -40,11 +35,9 @@ public class StockList {
     public ArrayList<Stock> getStocks(){
         return stocks;
     }
-
     public void addStock(Stock stock){
         stocks.add(stock);
     }
-
     public void removeStock(Stock stock){
         stocks.remove(stock);
     }

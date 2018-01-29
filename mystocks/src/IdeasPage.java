@@ -16,7 +16,6 @@ public class IdeasPage extends JComponent {
         JComboBox combobox;
         AutoCompleteDecorator decorator;
 
-
         /***************************************
          Frame that everything goes into
          ***************************************/
@@ -80,7 +79,6 @@ public class IdeasPage extends JComponent {
         menu.add(button4);
         menu.add(button5);
 
-
         /***********
          PANELS
          ***********/
@@ -94,31 +92,18 @@ public class IdeasPage extends JComponent {
         JPanel infoPanel = new JPanel();
         infoPanel.add(fav_bar, BorderLayout.CENTER);
         infoPanel.setBackground(Color.WHITE);
-//        JPanel previewPanel = new JPanel();
-//        previewPanel.setBackground(Color.ORANGE);
-//        previewPanel.setPreferredSize(new Dimension(100, 300));
-//        JPanel pointsPanel = new JPanel();
-//        pointsPanel.setBackground(Color.RED);
-//        pointsPanel.setPreferredSize(new Dimension(300, 100));
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.setPreferredSize(new Dimension(200, 400));
-//        infoPanel.add(previewPanel);
-//        infoPanel.add(pointsPanel);
         TitledBorder fav_panel_title = new TitledBorder("FAVORITES");
         fav_panel_title.setTitleJustification(TitledBorder.CENTER);
         fav_panel_title.setTitlePosition(TitledBorder.TOP);
         fav_panel_title.setTitleFont(new Font("Arial", Font.ITALIC, 14));
         infoPanel.setBorder(fav_panel_title);
 
-
-
         frame.setJMenuBar(menu);
         frame.getContentPane().add(Box.createRigidArea(new Dimension(750,20)));
         frame.add(infoPanel, BorderLayout.EAST);
         frame.setVisible(true);
-
     }
-
     public void destroyFrame(){ frame.dispose();}
-
 }

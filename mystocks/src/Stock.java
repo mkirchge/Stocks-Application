@@ -1,7 +1,3 @@
-/**
- * Created by maxkirchgesner on 4/18/17.
- */
-
 public class Stock {
 
     private String name;
