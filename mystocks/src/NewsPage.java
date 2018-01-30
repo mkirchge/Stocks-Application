@@ -20,6 +20,7 @@ public class NewsPage extends JComponent {
         frame = new JFrame("MyStocks");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.WHITE);
+//        frame.getContentPane().setBackground(Color.WHITE);
         frame.setSize(1000,1000);
 
         /*******************************
