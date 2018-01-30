@@ -35,33 +35,40 @@ public class GraphsPage extends JComponent {
          ***************************************/
         frame = new JFrame("MyStocks");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBackground(Color.GRAY);
+        frame.setBackground(Color.WHITE);
         frame.setSize(1000,1000);
 
         /*******************************
          Menu bar for stock search
          *******************************/
         JMenuBar menu = new JMenuBar();
+        menu.setBackground(new Color(59,89,152));
+        menu.setOpaque(true);
         JButton button1 = new JButton("Stock Search");
-        button1.setBackground(new Color(211,211,211));
+        button1.setBackground(new Color(59,89,152));
         button1.setForeground(Color.BLACK);
         button1.setFont(new Font("Arial", Font.BOLD, 14));
+        button1.setOpaque(true);
         JButton button2 = new JButton("News");
-        button2.setBackground(new Color(211,211,211));
+        button2.setBackground(new Color(59,89,152));
         button2.setForeground(Color.BLACK);
         button2.setFont(new Font("Arial", Font.BOLD, 14));
+        button2.setOpaque(true);
         JButton button3 = new JButton("Graphs");
-        button3.setBackground(new Color(211,211,211));
+        button3.setBackground(new Color(59,89,152));
         button3.setForeground(Color.BLACK);
         button3.setFont(new Font("Arial", Font.BOLD, 14));
+        button3.setOpaque(true);
         JButton button4 = new JButton("Ideas");
-        button4.setBackground(new Color(211,211,211));
+        button4.setBackground(new Color(59,89,152));
         button4.setForeground(Color.BLACK);
         button4.setFont(new Font("Arial", Font.BOLD, 14));
+        button4.setOpaque(true);
         JButton button5 = new JButton("Help");
-        button5.setBackground(new Color(211,211,211));
+        button5.setBackground(new Color(59,89,152));
         button5.setForeground(Color.BLACK);
         button5.setFont(new Font("Arial", Font.BOLD, 14));
+        button5.setOpaque(true);
         button1.addActionListener( (ActionEvent e) ->
         {
             frame.setContentPane(new GUI(sl));
@@ -88,23 +95,28 @@ public class GraphsPage extends JComponent {
             destroyFrame();
         });
         JButton fiveDayButton = new JButton("5 Day Graph");
-        fiveDayButton.setBackground(new Color(211,211,211));
+        fiveDayButton.setBackground(new Color(59,89,152));
+        fiveDayButton.setOpaque(true);
         fiveDayButton.setForeground(Color.BLACK);
         fiveDayButton.setFont(new Font("Arial", Font.BOLD, 14));
         JButton tenDayButton = new JButton("10 Day Graph");
-        tenDayButton.setBackground(new Color(211,211,211));
+        tenDayButton.setBackground(new Color(59,89,152));
+        tenDayButton.setOpaque(true);
         tenDayButton.setForeground(Color.BLACK);
         tenDayButton.setFont(new Font("Arial", Font.BOLD, 14));
         JButton oneMonthButton = new JButton("30 Day Graph");
-        oneMonthButton.setBackground(new Color(211,211,211));
+        oneMonthButton.setBackground(new Color(59,89,152));
+        oneMonthButton.setOpaque(true);
         oneMonthButton.setForeground(Color.BLACK);
         oneMonthButton.setFont(new Font("Arial", Font.BOLD, 14));
         JButton oneYearButton = new JButton("1 Year Graph");
-        oneYearButton.setBackground(new Color(211,211,211));
+        oneYearButton.setBackground(new Color(59,89,152));
+        oneYearButton.setOpaque(true);
         oneYearButton.setForeground(Color.BLACK);
         oneYearButton.setFont(new Font("Arial", Font.BOLD, 14));
         JButton fiveYearButton = new JButton("5 Year Graph");
-        fiveYearButton.setBackground(new Color(211,211,211));
+        fiveYearButton.setBackground(new Color(59,89,152));
+        fiveYearButton.setOpaque(true);
         fiveYearButton.setForeground(Color.BLACK);
         fiveYearButton.setFont(new Font("Arial", Font.BOLD, 14));
 

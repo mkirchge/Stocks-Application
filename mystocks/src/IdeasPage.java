@@ -21,33 +21,40 @@ public class IdeasPage extends JComponent {
          ***************************************/
         frame = new JFrame("MyStocks");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBackground(Color.GRAY);
+        frame.setBackground(Color.WHITE);
         frame.setSize(1000,1000);
 
         /*******************************
          Menu bar for stock search
          *******************************/
         JMenuBar menu = new JMenuBar();
+        menu.setBackground(new Color(59,89,152));
+        menu.setOpaque(true);
         JButton button1 = new JButton("Stock Search");
-        button1.setBackground(new Color(211,211,211));
+        button1.setBackground(new Color(59,89,152));
         button1.setForeground(Color.BLACK);
         button1.setFont(new Font("Arial", Font.BOLD, 14));
+        button1.setOpaque(true);
         JButton button2 = new JButton("News");
-        button2.setBackground(new Color(211,211,211));
+        button2.setBackground(new Color(59,89,152));
         button2.setForeground(Color.BLACK);
         button2.setFont(new Font("Arial", Font.BOLD, 14));
+        button2.setOpaque(true);
         JButton button3 = new JButton("Graphs");
-        button3.setBackground(new Color(211,211,211));
+        button3.setBackground(new Color(59,89,152));
         button3.setForeground(Color.BLACK);
         button3.setFont(new Font("Arial", Font.BOLD, 14));
+        button3.setOpaque(true);
         JButton button4 = new JButton("Ideas");
-        button4.setBackground(new Color(211,211,211));
+        button4.setBackground(new Color(59,89,152));
         button4.setForeground(Color.BLACK);
         button4.setFont(new Font("Arial", Font.BOLD, 14));
+        button4.setOpaque(true);
         JButton button5 = new JButton("Help");
-        button5.setBackground(new Color(211,211,211));
+        button5.setBackground(new Color(59,89,152));
         button5.setForeground(Color.BLACK);
         button5.setFont(new Font("Arial", Font.BOLD, 14));
+        button5.setOpaque(true);
         button1.addActionListener( (ActionEvent e) ->
         {
             frame.setContentPane(new GUI(sl));
