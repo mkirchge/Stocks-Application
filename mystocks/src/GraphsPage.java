@@ -19,6 +19,11 @@ public class GraphsPage extends JComponent {
     private static Object favTable[][] = new Object[10][2];
     JFrame frame;
     public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    private String currentCompany;
+    private String currentStock;
+    private String tempStr;
+    private String currentName;
+
 
     public GraphsPage(StockList sl){
 
@@ -94,34 +99,54 @@ public class GraphsPage extends JComponent {
         oneMonthButton.setBackground(new Color(211,211,211));
         oneMonthButton.setForeground(Color.BLACK);
         oneMonthButton.setFont(new Font("Arial", Font.BOLD, 14));
-        JButton oneYearButton = new JButton("One Year Graph");
+        JButton oneYearButton = new JButton("1 Year Graph");
         oneYearButton.setBackground(new Color(211,211,211));
         oneYearButton.setForeground(Color.BLACK);
         oneYearButton.setFont(new Font("Arial", Font.BOLD, 14));
-        JButton fiveYearButton = new JButton("2 Year Graph");
+        JButton fiveYearButton = new JButton("5 Year Graph");
         fiveYearButton.setBackground(new Color(211,211,211));
         fiveYearButton.setForeground(Color.BLACK);
         fiveYearButton.setFont(new Font("Arial", Font.BOLD, 14));
 
         fiveDayButton.addActionListener( (ActionEvent e) ->
         {
-            // NEEDS TO BE IMPLEMENTED
+            dataset.clear();
+            ArrayList<Double> yearPrices = StockLoader.loadStock5Day(currentStock,tempStr);
+            for (int i = 0; i < yearPrices.size(); i++){
+                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+            }
         });
         tenDayButton.addActionListener( (ActionEvent e) ->
         {
-            // NEEDS TO BE IMPLEMENTED
+            dataset.clear();
+            ArrayList<Double> yearPrices = StockLoader.loadStock10Day(currentStock,tempStr);
+            for (int i = 0; i < yearPrices.size(); i++){
+                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+            }
         });
         oneMonthButton.addActionListener( (ActionEvent e) ->
         {
-            // NEEDS TO BE IMPLEMENTED
+            dataset.clear();
+            ArrayList<Double> yearPrices = StockLoader.loadStock1Month(currentStock,tempStr);
+            for (int i = 0; i < yearPrices.size(); i++){
+                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+            }
         });
         oneYearButton.addActionListener( (ActionEvent e) ->
         {
-            // NEEDS TO BE IMPLEMENTED
+            dataset.clear();
+            ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
+            for (int i = 0; i < yearPrices.size(); i++){
+                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+            }
         });
         fiveYearButton.addActionListener( (ActionEvent e) ->
         {
-            // NEEDS TO BE IMPLEMENTED
+            dataset.clear();
+            ArrayList<Double> yearPrices = StockLoader.loadStock5Year(currentStock,tempStr);
+            for (int i = 0; i < yearPrices.size(); i++){
+                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+            }
         });
 
         menu.add(button1);
@@ -149,15 +174,15 @@ public class GraphsPage extends JComponent {
         combobox.addActionListener ((ActionEvent e) -> {
             dataset.clear();
             // parses company ticker symbol
-            String company = (String) combobox.getEditor().getItem();
-            String temp = company.substring(0,5).replace(" ","").replace("\t","");
-            int s = company.lastIndexOf("--");
-            String name = company.substring(s).replace("--", "").replace("\t", "");
+            currentCompany = (String) combobox.getEditor().getItem();
+            tempStr = currentCompany.substring(0,5).replace(" ","").replace("\t","");
+            int s = currentCompany.lastIndexOf("--");
+            currentName = currentCompany.substring(s).replace("--", "").replace("\t", "");
             // parses the name of the company
-            String name2 = name.substring(1);
-            ArrayList<Double> yearPrices = StockLoader.loadStock1Year(name2,temp);
+            currentStock = currentName.substring(1);
+            ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), name2, Integer.toString(i));
+                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
             }
         });
 

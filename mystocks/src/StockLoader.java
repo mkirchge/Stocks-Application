@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * Created by maxkirchgesner on 1/28/18.
- */
 public class StockLoader {
 
     public StockLoader(){}
@@ -135,7 +132,7 @@ public class StockLoader {
             JSONObject j2 = json.getJSONObject("dataset");
             array = j2.getJSONArray("data");
             // format is: date, open, high, low, end-of-day
-            for (int i = 728; i >= 0; i--){
+            for (int i = 1825; i >= 0; i--){
                 JSONArray temparray = array.getJSONArray(i);
                 prices.add(Double.parseDouble(temparray.get(4).toString()));
             }

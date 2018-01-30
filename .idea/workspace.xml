@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a1b809e-9cea-494f-a980-d7a8777a8b0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/GUI.java" afterPath="$PROJECT_DIR$/mystocks/src/GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/GraphsPage.java" afterPath="$PROJECT_DIR$/mystocks/src/GraphsPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/HelpPage.java" afterPath="$PROJECT_DIR$/mystocks/src/HelpPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/IdeasPage.java" afterPath="$PROJECT_DIR$/mystocks/src/IdeasPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/NewsPage.java" afterPath="$PROJECT_DIR$/mystocks/src/NewsPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/Stock.java" afterPath="$PROJECT_DIR$/mystocks/src/Stock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/StockList.java" afterPath="$PROJECT_DIR$/mystocks/src/StockList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mystocks/src/StockLoader.java" afterPath="$PROJECT_DIR$/mystocks/src/StockLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stocks-Application.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mystocks/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="-825">
               <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -42,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphsPage.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GraphsPage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mystocks/src/GraphsPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="204" column="45" selection-start-line="204" selection-start-column="45" selection-end-line="204" selection-end-column="45" />
+            <state relative-caret-position="251">
+              <caret line="79" column="53" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -192,9 +186,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Java .jar files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mystocks" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -634,22 +628,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mystocks/src/GraphsPage.java">
+    <entry file="file://$PROJECT_DIR$/mystocks/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="204" column="45" selection-start-line="204" selection-start-column="45" selection-end-line="204" selection-end-column="45" />
+        <state relative-caret-position="-825">
+          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
           <folding>
+            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mystocks/src/GUI.java">
+    <entry file="file://$PROJECT_DIR$/mystocks/src/GraphsPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+        <state relative-caret-position="251">
+          <caret line="79" column="53" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
