@@ -7,6 +7,9 @@ import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -18,14 +21,18 @@ public class GraphsPage extends JComponent {
 
     private static Object favTable[][] = new Object[10][2];
     JFrame frame;
-    public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//    public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    public static XYDataset ds;
+    XYSeriesCollection dataset = new XYSeriesCollection();
+    XYSeries series1 = new XYSeries("Stock");
+
     private String currentCompany;
     private String currentStock;
     private String tempStr;
     private String currentName;
 
-
     public GraphsPage(StockList sl){
+
 
         JComboBox combobox;
         AutoCompleteDecorator decorator = new AutoCompleteDecorator();
@@ -123,42 +130,43 @@ public class GraphsPage extends JComponent {
 
         fiveDayButton.addActionListener( (ActionEvent e) ->
         {
-            dataset.clear();
+            series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock5Day(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+                series1.add(i+1, yearPrices.get(i));
             }
         });
         tenDayButton.addActionListener( (ActionEvent e) ->
         {
-            dataset.clear();
+            series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock10Day(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+                series1.add(i+1, yearPrices.get(i));
             }
         });
         oneMonthButton.addActionListener( (ActionEvent e) ->
         {
-            dataset.clear();
+            series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock1Month(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+                series1.add(i+1, yearPrices.get(i));
+//                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
             }
         });
         oneYearButton.addActionListener( (ActionEvent e) ->
         {
-            dataset.clear();
+            series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+                series1.add(i+1, yearPrices.get(i));
             }
         });
         fiveYearButton.addActionListener( (ActionEvent e) ->
         {
-            dataset.clear();
+            series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock5Year(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+                series1.add(i+1, yearPrices.get(i));
             }
         });
 
@@ -185,7 +193,7 @@ public class GraphsPage extends JComponent {
         combobox.setMaximumRowCount(10);
         combobox.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         combobox.addActionListener ((ActionEvent e) -> {
-            dataset.clear();
+            series1.clear();
             // parses company ticker symbol
             currentCompany = (String) combobox.getEditor().getItem();
             tempStr = currentCompany.substring(0,5).replace(" ","").replace("\t","");
@@ -195,7 +203,7 @@ public class GraphsPage extends JComponent {
             currentStock = currentName.substring(1);
             ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
-                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
+                series1.add(i+1, yearPrices.get(i));
             }
         });
 
@@ -211,10 +219,10 @@ public class GraphsPage extends JComponent {
         /***********
          GRAPH
          ***********/
-        JFreeChart lineChart = ChartFactory.createLineChart("Stock Graph", "Day", "Price", dataset, PlotOrientation.VERTICAL, false,true,false);
-        CategoryPlot cp = (CategoryPlot) (lineChart).getPlot();
-        CategoryAxis ca = cp.getDomainAxis();
-        ca.setCategoryLabelPositions(CategoryLabelPositions.DOWN_90);
+        JFreeChart lineChart = ChartFactory.createXYLineChart("Stock Graph", "Day", "Price", dataset, PlotOrientation.VERTICAL, false,true,false);
+//        CategoryPlot cp = (CategoryPlot) (lineChart).getPlot();
+//        CategoryAxis ca = cp.getDomainAxis();
+//        ca.setCategoryLabelPositions(CategoryLabelPositions.DOWN_90);
         lineChart.setBackgroundPaint(Color.white);
         ChartPanel chartPanel = new ChartPanel(lineChart);
         JPanel jp1 = new JPanel();
