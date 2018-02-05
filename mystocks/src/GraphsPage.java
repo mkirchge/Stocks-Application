@@ -205,6 +205,7 @@ public class GraphsPage extends JComponent {
             for (int i = 0; i < yearPrices.size(); i++){
                 series1.add(i+1, yearPrices.get(i));
             }
+            dataset.addSeries(series1);
         });
 
         decorator.decorate(combobox);
@@ -215,20 +216,15 @@ public class GraphsPage extends JComponent {
         frame.add(combobox);
         frame.setVisible(true);
 
-
         /***********
          GRAPH
          ***********/
-        JFreeChart lineChart = ChartFactory.createXYLineChart("Stock Graph", "Day", "Price", dataset, PlotOrientation.VERTICAL, false,true,false);
-//        CategoryPlot cp = (CategoryPlot) (lineChart).getPlot();
-//        CategoryAxis ca = cp.getDomainAxis();
-//        ca.setCategoryLabelPositions(CategoryLabelPositions.DOWN_90);
+        JFreeChart lineChart = ChartFactory.createXYLineChart("Stock Graph","Day","Price",dataset,PlotOrientation.VERTICAL,false,true,false);
         lineChart.setBackgroundPaint(Color.white);
         ChartPanel chartPanel = new ChartPanel(lineChart);
         JPanel jp1 = new JPanel();
         jp1.add(chartPanel);
-
-
+        
         /***********
          PANELS
          ***********/
