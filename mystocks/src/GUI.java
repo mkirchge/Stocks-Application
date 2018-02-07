@@ -49,56 +49,22 @@ public class GUI extends JComponent {
         button1.setForeground(Color.BLACK);
         button1.setFont(new Font("Arial", Font.BOLD, 14));
         button1.setOpaque(true);
-        JButton button2 = new JButton("News");
-        button2.setBackground(new Color(59,89,152));
-        button2.setForeground(Color.BLACK);
-        button2.setFont(new Font("Arial", Font.BOLD, 14));
-        button2.setOpaque(true);
         JButton button3 = new JButton("Graphs");
         button3.setBackground(new Color(59,89,152));
         button3.setForeground(Color.BLACK);
         button3.setFont(new Font("Arial", Font.BOLD, 14));
         button3.setOpaque(true);
-        JButton button4 = new JButton("Ideas");
-        button4.setBackground(new Color(59,89,152));
-        button4.setForeground(Color.BLACK);
-        button4.setFont(new Font("Arial", Font.BOLD, 14));
-        button4.setOpaque(true);
-        JButton button5 = new JButton("Help");
-        button5.setBackground(new Color(59,89,152));
-        button5.setForeground(Color.BLACK);
-        button5.setFont(new Font("Arial", Font.BOLD, 14));
-        button5.setOpaque(true);
         button1.addActionListener( (ActionEvent e) ->
         {
-            frame.setContentPane(new GUI(sl));
-            destroyFrame();
-        });
-        button2.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(new NewsPage(sl));
-            destroyFrame();
+            frame.setContentPane(this);
         });
         button3.addActionListener( (ActionEvent e) ->
         {
             frame.setContentPane(new GraphsPage(sl));
             destroyFrame();
         });
-        button4.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(new IdeasPage(sl));
-            destroyFrame();
-        });
-        button5.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(new HelpPage(sl));
-            destroyFrame();
-        });
         menu.add(button1);
-        menu.add(button2);
         menu.add(button3);
-        menu.add(button4);
-        menu.add(button5);
 
         /**********************************************
             Creating the frame for the application

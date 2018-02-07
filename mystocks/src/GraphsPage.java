@@ -62,8 +62,7 @@ public class GraphsPage extends JComponent {
         });
         button3.addActionListener( (ActionEvent e) ->
         {
-            frame.setContentPane(new GraphsPage(sl));
-            destroyFrame();
+            frame.setContentPane(this);
         });
 
         JButton fiveDayButton = new JButton("5 Day Graph");
