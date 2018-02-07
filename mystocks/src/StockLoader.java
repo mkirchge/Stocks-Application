@@ -25,6 +25,7 @@ public class StockLoader {
             for (int i = 0; i < 1; i++) {
                 JSONArray temparray = array.getJSONArray(i);
                 stock.setPrice(temparray.get(4).toString());
+                stock.setDate(temparray.get(0).toString());
             }
         } catch (JSONException | IOException e) {
             System.out.println("Caught exception: " + e);

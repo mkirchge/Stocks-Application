@@ -6,6 +6,7 @@ public class Stock {
     private Double yearhigh;
     private String symbol;
     private String price;
+    private String date;
 
     public Stock(){
         name = "";
@@ -33,7 +34,11 @@ public class Stock {
 
     public double getYearhigh() { return yearhigh; }
 
+    public String getDate() { return date; }
+
     public void setPrice(String p) { price = p; }
+
+    public void setDate(String d) { date = d; }
 
     public void setChange(double c) { change = c; }
 

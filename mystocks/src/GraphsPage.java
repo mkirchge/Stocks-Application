@@ -150,7 +150,6 @@ public class GraphsPage extends JComponent {
             ArrayList<Double> yearPrices = StockLoader.loadStock1Month(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
                 series1.add(i+1, yearPrices.get(i));
-//                dataset.addValue(yearPrices.get(i), currentStock, Integer.toString(i));
             }
         });
         oneYearButton.addActionListener( (ActionEvent e) ->
@@ -201,6 +200,7 @@ public class GraphsPage extends JComponent {
             currentName = currentCompany.substring(s).replace("--", "").replace("\t", "");
             // parses the name of the company
             currentStock = currentName.substring(1);
+            Stock temp = StockLoader.loadStock(currentStock,tempStr);
             ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
             for (int i = 0; i < yearPrices.size(); i++){
                 series1.add(i+1, yearPrices.get(i));
@@ -224,7 +224,7 @@ public class GraphsPage extends JComponent {
         ChartPanel chartPanel = new ChartPanel(lineChart);
         JPanel jp1 = new JPanel();
         jp1.add(chartPanel);
-        
+
         /***********
          PANELS
          ***********/
