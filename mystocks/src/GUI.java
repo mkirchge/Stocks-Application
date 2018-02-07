@@ -1,11 +1,3 @@
-/**
- *    Created by maxkirchgesner on 4/18/17.
- *
- *    This is a personal project that allows me to call on any stock and
- *    displays information to me in the way I want to see it
- *
- **/
-
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
@@ -27,9 +19,10 @@ public class GUI extends JComponent {
     /**************************
         GUI for Application
      **************************/
-    public GUI(StockList sl) {
+    public GUI(StockList sl)
+    {
         JComboBox combobox;
-        AutoCompleteDecorator decorator;
+        AutoCompleteDecorator decorator = new AutoCompleteDecorator();
 
         /***************************************
             Frame that everything goes into
@@ -44,27 +37,26 @@ public class GUI extends JComponent {
             Menu bar for stock search
          *******************************/
         JMenuBar menu = new JMenuBar();
-        JButton button1 = new JButton("Stock Search");
-        button1.setBackground(new Color(59,89,152));
-        button1.setForeground(Color.BLACK);
-        button1.setFont(new Font("Arial", Font.BOLD, 14));
-        button1.setOpaque(true);
-        JButton button3 = new JButton("Graphs");
-        button3.setBackground(new Color(59,89,152));
-        button3.setForeground(Color.BLACK);
-        button3.setFont(new Font("Arial", Font.BOLD, 14));
-        button3.setOpaque(true);
-        button1.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(this);
-        });
-        button3.addActionListener( (ActionEvent e) ->
+        JButton mainPage = new JButton("Stock Search");
+        mainPage.setBackground(new Color(59,89,152));
+        mainPage.setForeground(Color.BLACK);
+        mainPage.setFont(new Font("Arial", Font.BOLD, 14));
+        mainPage.setOpaque(true);
+        JButton graphPage = new JButton("Graphs");
+        graphPage.setBackground(new Color(59,89,152));
+        graphPage.setForeground(Color.BLACK);
+        graphPage.setFont(new Font("Arial", Font.BOLD, 14));
+        graphPage.setOpaque(true);
+
+        mainPage.addActionListener((ActionEvent e) -> frame.setContentPane(this));
+        graphPage.addActionListener((ActionEvent e) ->
         {
             frame.setContentPane(new GraphsPage(sl));
             destroyFrame();
         });
-        menu.add(button1);
-        menu.add(button3);
+
+        menu.add(mainPage);
+        menu.add(graphPage);
 
         /**********************************************
             Creating the frame for the application
@@ -73,11 +65,15 @@ public class GUI extends JComponent {
         combobox = new JComboBox();
         combobox.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
         combobox.insertItemAt("Click on dropdown to select a stock", 0);
-        for (int i = 1; i < 3218; i++){ combobox.insertItemAt(mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", ""), i); }
+        for (int i = 1; i < 3218; i++)
+        {
+            combobox.insertItemAt(mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", ""), i);
+        }
         combobox.setSelectedIndex(0);
         combobox.setMaximumRowCount(10);
         combobox.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        combobox.addActionListener ((ActionEvent e) -> {
+        combobox.addActionListener ((ActionEvent e) ->
+        {
             // parses company ticker symbol
             String company = (String) combobox.getEditor().getItem();
             String temp = company.substring(0,5).replace(" ","").replace("\t","");
@@ -97,7 +93,7 @@ public class GUI extends JComponent {
         });
 
 
-        AutoCompleteDecorator.decorate(combobox);
+        decorator.decorate(combobox);
         frame.setSize(1200,1000);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -170,7 +166,8 @@ public class GUI extends JComponent {
     /**********
         Main
      **********/
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         StockList emptylist = new StockList();
         GUI gui = new GUI(emptylist);
     }

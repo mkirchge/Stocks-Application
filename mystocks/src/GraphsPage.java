@@ -6,7 +6,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -26,8 +25,8 @@ public class GraphsPage extends JComponent {
     private String tempStr;
     private String currentName;
 
-    public GraphsPage(StockList sl){
-
+    public GraphsPage(StockList sl)
+    {
         JComboBox combobox;
         AutoCompleteDecorator decorator = new AutoCompleteDecorator();
 
@@ -55,47 +54,49 @@ public class GraphsPage extends JComponent {
         button3.setForeground(Color.BLACK);
         button3.setFont(new Font("Arial", Font.BOLD, 14));
         button3.setOpaque(true);
-        button1.addActionListener( (ActionEvent e) ->
+
+        button1.addActionListener((ActionEvent e) ->
         {
             frame.setContentPane(new GUI(sl));
             destroyFrame();
         });
-        button3.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(this);
-        });
+        button3.addActionListener((ActionEvent e) -> frame.setContentPane(this));
+
+        Font buttonFont = new Font("Arial", Font.BOLD, 14);
+        Color buttonColor = new Color(59,89,152);
 
         JButton fiveDayButton = new JButton("5 Day Graph");
-        fiveDayButton.setBackground(new Color(59,89,152));
+        fiveDayButton.setBackground(buttonColor);
         fiveDayButton.setOpaque(true);
         fiveDayButton.setForeground(Color.BLACK);
-        fiveDayButton.setFont(new Font("Arial", Font.BOLD, 14));
+        fiveDayButton.setFont(buttonFont);
         JButton tenDayButton = new JButton("10 Day Graph");
-        tenDayButton.setBackground(new Color(59,89,152));
+        tenDayButton.setBackground(buttonColor);
         tenDayButton.setOpaque(true);
         tenDayButton.setForeground(Color.BLACK);
-        tenDayButton.setFont(new Font("Arial", Font.BOLD, 14));
+        tenDayButton.setFont(buttonFont);
         JButton oneMonthButton = new JButton("30 Day Graph");
-        oneMonthButton.setBackground(new Color(59,89,152));
+        oneMonthButton.setBackground(buttonColor);
         oneMonthButton.setOpaque(true);
         oneMonthButton.setForeground(Color.BLACK);
-        oneMonthButton.setFont(new Font("Arial", Font.BOLD, 14));
+        oneMonthButton.setFont(buttonFont);
         JButton oneYearButton = new JButton("1 Year Graph");
-        oneYearButton.setBackground(new Color(59,89,152));
+        oneYearButton.setBackground(buttonColor);
         oneYearButton.setOpaque(true);
         oneYearButton.setForeground(Color.BLACK);
-        oneYearButton.setFont(new Font("Arial", Font.BOLD, 14));
+        oneYearButton.setFont(buttonFont);
         JButton fiveYearButton = new JButton("5 Year Graph");
-        fiveYearButton.setBackground(new Color(59,89,152));
+        fiveYearButton.setBackground(buttonColor);
         fiveYearButton.setOpaque(true);
         fiveYearButton.setForeground(Color.BLACK);
-        fiveYearButton.setFont(new Font("Arial", Font.BOLD, 14));
+        fiveYearButton.setFont(buttonFont);
 
         fiveDayButton.addActionListener( (ActionEvent e) ->
         {
             series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock5Day(currentStock,tempStr);
-            for (int i = 0; i < yearPrices.size(); i++){
+            for (int i = 0; i < yearPrices.size(); i++)
+            {
                 series1.add(i+1, yearPrices.get(i));
             }
         });
@@ -103,7 +104,8 @@ public class GraphsPage extends JComponent {
         {
             series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock10Day(currentStock,tempStr);
-            for (int i = 0; i < yearPrices.size(); i++){
+            for (int i = 0; i < yearPrices.size(); i++)
+            {
                 series1.add(i+1, yearPrices.get(i));
             }
         });
@@ -111,7 +113,8 @@ public class GraphsPage extends JComponent {
         {
             series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock1Month(currentStock,tempStr);
-            for (int i = 0; i < yearPrices.size(); i++){
+            for (int i = 0; i < yearPrices.size(); i++)
+            {
                 series1.add(i+1, yearPrices.get(i));
             }
         });
@@ -119,7 +122,8 @@ public class GraphsPage extends JComponent {
         {
             series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
-            for (int i = 0; i < yearPrices.size(); i++){
+            for (int i = 0; i < yearPrices.size(); i++)
+            {
                 series1.add(i+1, yearPrices.get(i));
             }
         });
@@ -127,7 +131,8 @@ public class GraphsPage extends JComponent {
         {
             series1.clear();
             ArrayList<Double> yearPrices = StockLoader.loadStock5Year(currentStock,tempStr);
-            for (int i = 0; i < yearPrices.size(); i++){
+            for (int i = 0; i < yearPrices.size(); i++)
+            {
                 series1.add(i+1, yearPrices.get(i));
             }
         });
@@ -147,11 +152,15 @@ public class GraphsPage extends JComponent {
         combobox = new JComboBox();
         combobox.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
         combobox.insertItemAt("Click on dropdown to select a stock", 0);
-        for (int i = 1; i < 3218; i++){ combobox.insertItemAt(mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", ""), i); }
+        for (int i = 1; i < 3218; i++)
+        {
+            combobox.insertItemAt(mystocks.getStocks().get(i).getSymbol() + " -- " + mystocks.getStocks().get(i).getName().replace(" - Common Stock", ""), i);
+        }
         combobox.setSelectedIndex(0);
         combobox.setMaximumRowCount(10);
         combobox.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        combobox.addActionListener ((ActionEvent e) -> {
+        combobox.addActionListener ((ActionEvent e) ->
+        {
             series1.clear();
             // parses company ticker symbol
             currentCompany = (String) combobox.getEditor().getItem();
@@ -162,7 +171,8 @@ public class GraphsPage extends JComponent {
             currentStock = currentName.substring(1);
             Stock temp = StockLoader.loadStock(currentStock,tempStr);
             ArrayList<Double> yearPrices = StockLoader.loadStock1Year(currentStock,tempStr);
-            for (int i = 0; i < yearPrices.size(); i++){
+            for (int i = 0; i < yearPrices.size(); i++)
+            {
                 series1.add(i+1, yearPrices.get(i));
             }
             dataset.addSeries(series1);
