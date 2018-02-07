@@ -2,11 +2,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -20,11 +16,10 @@ import java.util.ArrayList;
 public class GraphsPage extends JComponent {
 
     private static Object favTable[][] = new Object[10][2];
-    JFrame frame;
-//    public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    private JFrame frame;
     public static XYDataset ds;
-    XYSeriesCollection dataset = new XYSeriesCollection();
-    XYSeries series1 = new XYSeries("Stock");
+    private XYSeriesCollection dataset = new XYSeriesCollection();
+    private XYSeries series1 = new XYSeries("Stock");
 
     private String currentCompany;
     private String currentStock;
@@ -32,7 +27,6 @@ public class GraphsPage extends JComponent {
     private String currentName;
 
     public GraphsPage(StockList sl){
-
 
         JComboBox combobox;
         AutoCompleteDecorator decorator = new AutoCompleteDecorator();
@@ -43,7 +37,6 @@ public class GraphsPage extends JComponent {
         frame = new JFrame("MyStocks");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBackground(Color.WHITE);
-//        frame.getContentPane().setBackground(Color.WHITE);
         frame.setSize(1000,1000);
 
         /*******************************
@@ -57,34 +50,14 @@ public class GraphsPage extends JComponent {
         button1.setForeground(Color.BLACK);
         button1.setFont(new Font("Arial", Font.BOLD, 14));
         button1.setOpaque(true);
-        JButton button2 = new JButton("News");
-        button2.setBackground(new Color(59,89,152));
-        button2.setForeground(Color.BLACK);
-        button2.setFont(new Font("Arial", Font.BOLD, 14));
-        button2.setOpaque(true);
         JButton button3 = new JButton("Graphs");
         button3.setBackground(new Color(59,89,152));
         button3.setForeground(Color.BLACK);
         button3.setFont(new Font("Arial", Font.BOLD, 14));
         button3.setOpaque(true);
-        JButton button4 = new JButton("Ideas");
-        button4.setBackground(new Color(59,89,152));
-        button4.setForeground(Color.BLACK);
-        button4.setFont(new Font("Arial", Font.BOLD, 14));
-        button4.setOpaque(true);
-        JButton button5 = new JButton("Help");
-        button5.setBackground(new Color(59,89,152));
-        button5.setForeground(Color.BLACK);
-        button5.setFont(new Font("Arial", Font.BOLD, 14));
-        button5.setOpaque(true);
         button1.addActionListener( (ActionEvent e) ->
         {
             frame.setContentPane(new GUI(sl));
-            destroyFrame();
-        });
-        button2.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(new NewsPage(sl));
             destroyFrame();
         });
         button3.addActionListener( (ActionEvent e) ->
@@ -92,16 +65,7 @@ public class GraphsPage extends JComponent {
             frame.setContentPane(new GraphsPage(sl));
             destroyFrame();
         });
-        button4.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(new IdeasPage(sl));
-            destroyFrame();
-        });
-        button5.addActionListener( (ActionEvent e) ->
-        {
-            frame.setContentPane(new HelpPage(sl));
-            destroyFrame();
-        });
+
         JButton fiveDayButton = new JButton("5 Day Graph");
         fiveDayButton.setBackground(new Color(59,89,152));
         fiveDayButton.setOpaque(true);
@@ -170,10 +134,7 @@ public class GraphsPage extends JComponent {
         });
 
         menu.add(button1);
-        menu.add(button2);
         menu.add(button3);
-        menu.add(button4);
-        menu.add(button5);
         menu.add(fiveDayButton);
         menu.add(tenDayButton);
         menu.add(oneMonthButton);
