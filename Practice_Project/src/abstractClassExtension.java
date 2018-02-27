@@ -1,1 +1,0 @@
-class abstractClassExtension extends abstractClassExample{ }
